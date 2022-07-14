@@ -51,19 +51,19 @@ def test_label_holidays():
     ]
     input = spark.createDataFrame(
         [
-            (date(2019, 1, 1), "foo"),  # New Year's
-            (date(2019, 7, 21), "bar"),  # Belgian national holiday
+            (date(2000, 1, 1), "foo"),  # New Year's
+            (date(2018, 7, 21), "bar"),  # Belgian national holiday
             (date(2019, 12, 6), "fubar"),  # Saint-Nicholas
         ],
         schema=StructType(fields[:2]),
     )
 
-    result = label_holidays3(input)
+    result = label_holidays(input)
 
     expected = spark.createDataFrame(
         [
-            (date(2019, 1, 1), "foo", True),
-            (date(2019, 7, 21), "bar", True),
+            (date(2000, 1, 1), "foo", True),
+            (date(2018, 7, 21), "bar", True),
             (date(2019, 12, 6), "fubar", False),
         ],
         schema=StructType(fields),
